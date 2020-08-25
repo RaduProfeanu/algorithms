@@ -126,20 +126,15 @@ public class homework2 {
         int[] arrayDeSortat = new int[]{20, 3, 23, 1, -56, 0, 42};
         // sortArray(arrayDeSortat);
         //
-        Scanner scannerv2 = new Scanner(System.in);
-        System.out.println("Introduceti un numar:");
-        int numarCititDeLaTastura = scanner.nextInt();
-
         int p = 6;
         boolean condition= false;
+        int nrDeIncercari=0;
 
+        while (!condition) {
 
-
-        while (condition==false) {
-            int nrDeIncercari=0;
             scanner = new Scanner(System.in);
             System.out.println("Introduceti un numar:");
-            numarCititDeLaTastura = scanner.nextInt();
+           int numarCititDeLaTastura = scanner.nextInt();
             if (numarCititDeLaTastura < p) {
                 System.out.println("numarul este mai mic");
                 nrDeIncercari++;
@@ -151,17 +146,10 @@ public class homework2 {
             else if (numarCititDeLaTastura == p) {
                 System.out.println("Felicitari!Ai ghicit numarul");
                 condition=true;
+                nrDeIncercari++;
 
             }
-
-            scanner = new Scanner(System.in);
-            System.out.println("Introduceti un numar:");
-            numarCititDeLaTastura = scanner.nextInt();
-            nrDeIncercari++;
             System.out.println("nr de incercari a fost "+ nrDeIncercari);
-
-
-            //System.out.println("nr de incercari a fost "+ nrDeIncercari);
         }
     }
 }
