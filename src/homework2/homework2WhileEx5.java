@@ -1,3 +1,5 @@
+package homework2;
+
 import java.util.Scanner;
 public class homework2WhileEx5 {
 public static boolean estePalindrom (int number){

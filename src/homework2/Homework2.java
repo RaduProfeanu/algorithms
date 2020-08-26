@@ -1,45 +1,15 @@
+package homework2;
+
+import java.util.Arrays;
 import java.util.Scanner;
 
-public class homework2 {
+public class Homework2 {
 
     // functia de mai jos verifica daca un numar este prim
-    static boolean isPrime(int n) {
-
-        if (n < 1) {
-            return false;
-        } else {
-            for (int i = 2; i < n; i++) {
-                if (n % i == 0) {
-                    return false;
-                }
-            }
-
-        }
-        return true;
-    }
-
-    // functia de mai jos sorteaza un array
-
-    private static void sortArray(int[] n) {
-        int[] num = new int[]{1, 4, -56, 2, 23, 14};
-
-        for (int i = 0; i < num.length; i++) {
-            for (int j = i + 1; j < num.length; j++) {
-                if (num[i] > num[j]) {
-                    int temp = num[i];
-                    num[i] = num[j];
-                    num[j] = num[i];
-                    System.out.println(num[i] + " ");
-                }
-            }
-        }
-        return;
-    }
-
     public static void main(String[] args) {
 
-
         int[] array = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9,};
+        sortArray(array);
 
 
         for (int j = 0; j < 10; j++) {
@@ -49,17 +19,7 @@ public class homework2 {
             System.out.print("\n");
         }
 
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                if (i == j) {
-                    System.out.print(1 + " ");
-                } else {
-                    System.out.print(0 + " ");
-                }
-
-            }
-            System.out.print("\n");
-        }
+        print1OnMainDiagonal();
 
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
@@ -124,32 +84,84 @@ public class homework2 {
         }
 
         int[] arrayDeSortat = new int[]{20, 3, 23, 1, -56, 0, 42};
-        // sortArray(arrayDeSortat);
+        sortArray(arrayDeSortat);
         //
         int p = 6;
-        boolean condition= false;
-        int nrDeIncercari=0;
+        boolean condition = false;
+        int nrDeIncercari = 0;
 
         while (!condition) {
 
             scanner = new Scanner(System.in);
             System.out.println("Introduceti un numar:");
-           int numarCititDeLaTastura = scanner.nextInt();
+            int numarCititDeLaTastura = scanner.nextInt();
             if (numarCititDeLaTastura < p) {
                 System.out.println("numarul este mai mic");
                 nrDeIncercari++;
-            }
-           else if (numarCititDeLaTastura > p) {
-                   System.out.println("numarul este mai mare");
+            } else if (numarCititDeLaTastura > p) {
+                System.out.println("numarul este mai mare");
                 nrDeIncercari++;
-                }
-            else if (numarCititDeLaTastura == p) {
+            } else if (numarCititDeLaTastura == p) {
                 System.out.println("Felicitari!Ai ghicit numarul");
-                condition=true;
+                condition = true;
                 nrDeIncercari++;
 
             }
-            System.out.println("nr de incercari a fost "+ nrDeIncercari);
+            System.out.println("nr de incercari a fost " + nrDeIncercari);
+        }
+    }
+
+    static boolean isPrime(int n) {
+
+        if (n < 1) {
+            return false;
+        } else {
+            for (int i = 2; i < n; i++) {
+                if (n % i == 0) {
+                    return false;
+                }
+            }
+
+        }
+        return true;
+    }
+
+    // functia de mai jos sorteaza un array
+
+    private static void sortArray(int[] n) {
+
+        int[] num = new int[]{1, 4, -56, 2, 23, 14};
+
+
+        int[] sortedArray = new int[num.length];
+
+        for (int i = 0; i < num.length; i++) {
+            int min = Integer.MAX_VALUE;
+            int index = 0;
+            for (int j = 0; j < num.length; j++) {
+                if (num[j] < min) {
+                    min = num[j];
+                    index = j;
+                }
+            }
+            sortedArray[i] = min;
+            num[index] = Integer.MAX_VALUE;
+        }
+        System.out.println("sortedArray=" + Arrays.toString(sortedArray));
+    }
+
+    private static void print1OnMainDiagonal() {
+
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (i == j) {
+                    System.out.print(1 + " ");
+                } else {
+                    System.out.print(0 + " ");
+                }
+
+            }
+            System.out.print("\n");
         }
     }
 }

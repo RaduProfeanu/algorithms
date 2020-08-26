@@ -1,3 +1,5 @@
+package homework2;
+
 public class algorithms {
 
     public static void main(String[] args) {
