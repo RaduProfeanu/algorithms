@@ -34,18 +34,16 @@ public class Homework5 {
 
     // exercise 2 homework 5
 
-    static int[] noCount(int num){
+    static void noCount(){
         String answer="";
         int nrZerouri=0;
         int nrPozitive=0;
         int nrNegative=0;
-        int resultArray[];
-        resultArray =new int[3];
 
         do{
             Scanner scan=new Scanner(System.in);
             System.out.println("Introduceti numar");
-            num=scan.nextInt();
+            int num=scan.nextInt();
 
             if(num>0){
                 nrPozitive++;
@@ -61,30 +59,43 @@ public class Homework5 {
             answer=scan.next();
         }while(answer.equals("y"));
 
-        resultArray[0]=nrPozitive;
-        resultArray[1]=nrNegative;
-        resultArray[2]=nrZerouri;
-
-        System.out.println("nr elementelor pozitive este "+ resultArray[0]);
-        System.out.println("nr elementelor negative este "+ resultArray[1]);
-        System.out.println("nr elementelor egale cu zero "+ resultArray[2]);
-
-        return resultArray;
+        System.out.println("nr elementelor pozitive este "+ nrPozitive);
+        System.out.println("nr elementelor negative este "+ nrNegative);
+        System.out.println("nr elementelor egale cu zero "+ nrZerouri);
     }
 
     // exercise 3 homework 5
 
     static int calcFactorial(int n){
        int factorial=1;
-       for (int i=1;i<=n;i++){
+       if (n==0){
+           return 1;
+       }else{
+           for (int i=1;i<=n;i++){
            factorial=factorial*i;
+       }
        }
        return factorial;
     }
 
+    static double calcSin(double x, int n){
 
+        double radiants=Math.toRadians(x);
+        int power=1;
+        double sinx=0.0;
+        for(int i=1;i<=n;i++){
+            double temp=0.0;
+            if(i%2==0){
+                temp=-Math.pow(radiants,power)/calcFactorial(power);
+            }else{
+                temp=Math.pow(radiants,power)/calcFactorial(power);
+            }
+            sinx=sinx+temp;
+            power=power+2;
+        }
+        return sinx;
 
-
+    }
 
     public static void main(String[] args) {
 
@@ -104,7 +115,19 @@ public class Homework5 {
         int divider=scanner3.nextInt();
 
         System.out.println("Suma este: "+rangeSum(primulNumar,alDoileaNumar,divider));
-        noCount(6);
+        noCount();
+
+        Scanner scanner4 = new Scanner(System.in);
+        System.out.println("Introduceti valoarea x ");
+
+        double radiants = scanner.nextDouble();
+
+        Scanner scanner5 = new Scanner(System.in);
+        System.out.println("Introduceti numarul folosit la aproximare ");
+
+        int aproximare = scanner.nextInt();
+
+        System.out.println("valoarea sin x este: "+calcSin(radiants,aproximare));
 
     }
 }
