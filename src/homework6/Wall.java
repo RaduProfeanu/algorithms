@@ -5,6 +5,10 @@ public class Wall {
     private double Width;
     private double Height;
 
+    public Wall(){
+        System.out.println("This is a default constructor");
+    }
+
     public Wall(double width, double height){
 
         if (width<0){
