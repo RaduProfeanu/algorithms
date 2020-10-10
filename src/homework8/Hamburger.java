@@ -9,7 +9,13 @@ public class Hamburger {
 
     public Hamburger(String bread, int meat) {
         this.bread = bread;
-        this.meat = meat;
+
+        if (meat>3){
+            this.meat=3;
+        }else{
+            this.meat=meat;
+        }
+
     }
 
     public String getBread() {
@@ -23,7 +29,15 @@ public class Hamburger {
     public double getPrice() {
         return price;
     }
+    public double makeOrder(boolean opt1, boolean opt2, boolean opt3,
+                            boolean opt4, boolean opt5, boolean opt6) {
 
-// Will continue this part of the assigment for next week homework- haven't finished due to time constraints
+        return price;
+    }
 
 }
+
+
+
+
+
