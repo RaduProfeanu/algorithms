@@ -3,8 +3,10 @@ package homework9;
 public class Video {
 
     private String title;
-    private boolean availability;
-    private int rating;
+    private int averageRating;
+    private int stock;
+    private int ratingNo;
+
 
     public String getTitle() {
         return title;
@@ -14,33 +16,56 @@ public class Video {
         this.title = title;
     }
 
-    public boolean isAvailability() {
-        return availability;
+    public int getStock() {
+        return stock;
     }
 
-    public void setAvailability(boolean availability) {
-        this.availability = availability;
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public  boolean isAvailable(){
+            return stock>0;
+    }
+
+    public void rented(){
+        if(isAvailable()){
+            stock--;
+        }else{
+            System.out.println("Video out of stock");
+        }
+    }
+
+    public void returnVideo(){
+            stock++;
+    }
+
+    public void rate(int rate){
+       averageRating=(averageRating*ratingNo+rate)/(ratingNo+1);
+        ratingNo++;
     }
 
     public int getRating() {
-        return rating;
+        return averageRating;
     }
 
     public void setRating(int rating) {
-        this.rating = rating;
+        this.averageRating = averageRating;
     }
 
-    public Video(String title, boolean availability, int rating) {
+    public Video(String title) {
         this.title = title;
-        this.availability = availability;
-        this.rating = rating;
+        this.averageRating=0;
+        this.stock=1;
     }
 
-    public void checkout(boolean availability){
-        if(availability){
-            System.out.println("The item is on inventory");
-        }else{
-            System.out.println("The item is checked out");
-        }
+    @Override
+    public String toString() {
+        return "Video{" +
+                "title='" + title + '\'' +
+                ", averageRating=" + averageRating +
+                ", stock=" + stock +
+                ", ratingNo=" + ratingNo +
+                '}';
     }
 }

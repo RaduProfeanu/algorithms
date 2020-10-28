@@ -1,24 +1,69 @@
 package homework9;
 
-public class VideoStore {
-    private static String[] Video = {"Frozen", "Avengers:End Game", "Game of Thrones", "Star Wars"};
+import java.util.ArrayList;
+import java.util.List;
 
-    public String[] addVideo(int n, String[] Video, String element) {
+public class VideoStore{
 
-        String newVideo[]= new String[][n + 1];
+    private List<Video> inventory; // video instances
 
-        for (int i=0;i<n;i++){
-            newVideo[i]=Video[i];
-            newVideo[n]=element;
-            return newVideo;
+    public VideoStore() {
+        this.inventory = new ArrayList<>();
+    }
+
+    public void addVideo(String title){
+        Video video=new Video(title);
+        boolean videoIsAvailable =false;
+        for ( Video tempVideo:inventory){
+            if (tempVideo.getTitle().equals(title)){
+                int stock=tempVideo.getStock();
+                tempVideo.setStock(stock+1);
+                videoIsAvailable=true;
+            }
         }
-
+        if(videoIsAvailable==false){
+            inventory.add(video);
+        }
     }
 
-    public void receiveRating(String Video,int n){
 
+    public void checkout(String title){
+        boolean videoIsAvailable =false;
+       for (Video video: inventory){
+           if (video.getTitle().equals(title)){
+               video.rented();
+               videoIsAvailable=true;
+               break;
+           }
+       }
+
+       if(videoIsAvailable){
+           System.out.println("Video"+title+"rented succesfully");
+       }else{
+           System.out.println("We don't have this video");
+       }
     }
 
+    public void returnVideo(String title){
+        for ( Video video:inventory){
+            if (video.getTitle().equals(title)){
+                video.returnVideo();
+            }
+        }
+    }
+
+    public void receiveRating(String title,int rating){
+        for ( Video video:inventory) {
+            if (video.getTitle().equals(title)) {
+                video.rate(rating);
+                break;
+            }
+        }
+    }
+
+    public void listInventory(){
+        for (Video video : inventory) {
+            System.out.println(video);
+        }
+    }
 }
-
-// --------------- Work in progress
