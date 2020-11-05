@@ -4,14 +4,48 @@ import java.util.List;
 
 public class BankAccount {
 
-    private String bankAccount;
+    private String iban;
+
     private int balance;
-    private List<String> attachedCardNumber;
 
+    private List<Card> attachedCardNumber;
 
-    public BankAccount(String bankAccount, int balance) {
-        this.bankAccount = bankAccount;
+    public BankAccount(String iban, int balance) {
+        this.iban = iban;
+        //validare
         this.balance = balance;
+    }
+
+    public void addMoney(int amount) {
+
+        if (amount <= 0) {
+            balance = 0;
+        } else {
+            balance = balance + amount;
+        }
+        System.out.println("Money in the account " + balance);
+    }
+
+    public void withdrawMoney(int amount) {
+
+        if (amount >= balance) {
+            throw new NotEnoughBalanceException("Please deposit money before withdrawl");
+        } else {
+            balance = balance - amount;
+        }
+        System.out.println("Money in the account " + balance);
+    }
+
+    public void attachCard(Card card) {
+        attachedCardNumber.add(card);
+    }
+
+    @Override
+    public String toString() {
+        return "BankAccount{" +
+                "bankAccount='" + iban + '\'' +
+                ", balance=" + balance +
+                '}';
     }
 
     public int getBalance() {
@@ -22,46 +56,11 @@ public class BankAccount {
         this.balance = balance;
     }
 
-    public String getBankAccount() {
-        return bankAccount;
+    public String getIban() {
+        return iban;
     }
 
-    public void setBankAccount(String bankAccount) {
-        this.bankAccount = bankAccount;
-    }
-
-    public void addMoney(int amount){
-
-        if(amount<=0){
-            this.balance=0;
-        }else{
-            this.balance=balance+amount;
-        }
-        System.out.println("Money in the account "+balance);
-    }
-
-    public void withdrawMoney(int amount){
-
-        if (balance<=0||amount>=balance){
-            throw new ArithmeticException("Please deposit money before withdrawl");
-        }else{
-            this.balance=balance-amount;
-        }
-        System.out.println("Money in the account "+balance);
-    }
-
-    public void attachCard(String cardNumber){
-
-        String newattachedCard=new String();
-        attachedCardNumber.add(newattachedCard);
-
-    }
-
-    @Override
-    public String toString() {
-        return "BankAccount{" +
-                "bankAccount='" + bankAccount + '\'' +
-                ", balance=" + balance +
-                '}';
+    public void setIban(String iban) {
+        this.iban = iban;
     }
 }
