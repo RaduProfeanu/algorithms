@@ -1,8 +1,11 @@
 package homework10.exercise2;
 
+import java.util.List;
+
 public class Pos {
 
-    private List<bankAccount> bankAccounts;
+    private List<BankAccount> bankAccounts;
 
-    public void pay(amount,card){}
+    public void pay(double amount, String card) {
+    }
 }
