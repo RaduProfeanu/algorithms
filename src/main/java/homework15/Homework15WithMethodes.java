@@ -13,7 +13,7 @@ public class Homework15WithMethodes {
 
     private ChromeOptions options;
 
-    @BeforeTest
+    @BeforeMethod
     public void setup(){
         options= new ChromeOptions();
         System.setProperty("webdriver.chrome.driver","/Chromedriver/chromedriver.exe");
@@ -21,8 +21,8 @@ public class Homework15WithMethodes {
         driver.navigate().to("https://www.calculator.net/percent-calculator.html");
     }
 
-    @AfterTest
-    public void closedriver(){
+    @AfterMethod
+    public void closeDriver(){
         driver.close();
     }
 
@@ -65,6 +65,8 @@ public class Homework15WithMethodes {
 
     @Test
     public void returnWorkflow4Result(){
+        driver.findElement(By.xpath("//*[@id=\"content\"]/table[6]/tbody/tr[1]/td/input[1]")).sendKeys("9000");
+        driver.findElement(By.xpath("//*[@id=\"content\"]/table[6]/tbody/tr[1]/td/input[2]")).sendKeys("35");
         driver.findElement(By.className("bigtext")).click();
         driver.findElement(By.xpath("//*[@id=\"content\"]/table[6]/tbody/tr[1]/td/select/option[2]")).click();
         driver.findElement(By.xpath("/html/body/div[3]/div[1]/table[6]/tbody/tr[2]/td/input[2]")).click();
